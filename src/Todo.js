@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
 
 export default class Todo extends Component {
+  constructor(props){
+    super(props)
+    this.handleRemove = this.handleRemove.bind(this)
+  }
+
+  handleRemove(){
+    this.props.removeTodo(this.props.id)
+  }
+
   render() {
-    console.log('props', this.props)
     return (
       <div>
-        <h1>this.props.</h1>
+        <button>Edit</button>
+        <button onClick={this.handleRemove}>X</button>
+        <p>{this.props.task}</p>
       </div>
     )
   }
