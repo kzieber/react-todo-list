@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './Todo.css';
 
 export default class Todo extends Component {
@@ -44,7 +46,7 @@ export default class Todo extends Component {
     let result;
     if (this.state.isEditing) {
       result = (
-        <div>
+        <div className='Todo'>
           <form onSubmit={this.handleUpdate}>
             <input
               type='text'
@@ -58,14 +60,22 @@ export default class Todo extends Component {
       );
     } else {
       result = (
-        <div>
-          <button onClick={this.toggleForm}>Edit</button>
-          <button onClick={this.handleRemove}>X</button>
+        <div className='Todo'>
           <li
-            className={this.props.completed ? 'completed' : ''}
+            className={
+              this.props.completed ? 'Todo-task completed' : 'Todo-task'
+            }
             onClick={this.handleToggle}>
             {this.props.task}
           </li>
+          <div className='Todo-buttons'>
+            <button onClick={this.toggleForm}>
+              <FontAwesomeIcon icon={faPen} />
+            </button>
+            <button onClick={this.handleRemove}>
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
+          </div>
         </div>
       );
     }
